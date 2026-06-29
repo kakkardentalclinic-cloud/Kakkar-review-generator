@@ -23,18 +23,48 @@ const endingWords = [
   "Family ke liye best dental clinic.",
   "Dobara zarurat padi to yahin aayenge."
 ];
+const painWords = [
+"Bilkul pain feel nahi hua",
+"Expected se kaafi comfortable experience raha",
+"Treatment surprisingly painless tha",
+"Procedure ke baad bhi dard bahut kam raha",
+"Recovery bahut smooth rahi"
+];
+
+const staffWords = [
+"Staff bahut cooperative tha",
+"Entire team bahut professional thi",
+"Reception staff bahut polite tha",
+"Clinic team ne bahut support kiya",
+"Appointment process bahut smooth raha"
+];
+
+const outcomeWords = [
+"Result se bahut khush hu",
+"Meri smile pehle se kaafi better lag rahi hai",
+"Treatment ke baad confidence badh gaya",
+"Expected se better result mila",
+"Overall experience outstanding raha"
+];
 
 function generateReviews(treatment, count = 100) {
   const reviews = [];
 
   while (reviews.length < count) {
     const review =
-      `${treatment}. ${
-        doctorWords[Math.floor(Math.random()*doctorWords.length)]
-      }. ${
-        hygieneWords[Math.floor(Math.random()*hygieneWords.length)]
-      }. ${
-        endingWords[Math.floor(Math.random()*endingWords.length)]
+`${treatment}. ${
+doctorWords[Math.floor(Math.random()*doctorWords.length)]
+}. ${
+painWords[Math.floor(Math.random()*painWords.length)]
+}. ${
+hygieneWords[Math.floor(Math.random()*hygieneWords.length)]
+}. ${
+staffWords[Math.floor(Math.random()*staffWords.length)]
+}. ${
+outcomeWords[Math.floor(Math.random()*outcomeWords.length)]
+}. ${
+endingWords[Math.floor(Math.random()*endingWords.length)]
+}`;
       }`;
 
     if (!reviews.includes(review)) {
@@ -46,12 +76,12 @@ function generateReviews(treatment, count = 100) {
 }
 
 const reviews = {
-  rct: generateReviews("Root canal treatment ke dauran", 100),
-  extraction: generateReviews("Tooth extraction ke baad", 100),
-  filling: generateReviews("Tooth filling treatment me", 100),
-  denture: generateReviews("Denture treatment ke baad", 100),
-  kids: generateReviews("Bachche ke treatment ke dauran", 100),
-  implant: generateReviews("Dental implant treatment ke baad", 100)
+  rct: generateReviews("Root canal treatment ke dauran", 500),
+  extraction: generateReviews("Tooth extraction ke baad", 500),
+  filling: generateReviews("Tooth filling treatment me", 500),
+  denture: generateReviews("Denture treatment ke baad", 500),
+  kids: generateReviews("Bachche ke treatment ke dauran", 500),
+  implant: generateReviews("Dental implant treatment ke baad", 500)
 };
 
 let currentReview="";
