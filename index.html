@@ -171,52 +171,89 @@ Kakkar Dental Clinic • A Family Dental Clinic
 </div>
 
 <script>
+  
+    function generateReviews(treatment, count) {
+
+const starters = [
+"I had a great experience with",
+"Highly satisfied with",
+"Very happy with",
+"Excellent treatment for",
+"Professional care during",
+"My experience with"
+];
+
+const endings = [
+"Doctor explained everything very nicely.",
+"Clinic hygiene and sterilization are excellent.",
+"Treatment was completely painless.",
+"Staff is very cooperative and polite.",
+"Would definitely recommend this clinic.",
+"Modern equipment and advanced care."
+];
+
+let arr = [];
+
+for(let i=0;i<count;i++){
+const s = starters[Math.floor(Math.random()*starters.length)];
+const e = endings[Math.floor(Math.random()*endings.length)];
+arr.push(`${s} ${treatment}. ${e}`);
+}
+
+return arr;
+    }
 
 const reviewData = {
-
-general:[
-"Bahut hi polite doctor hain. Treatment bilkul painless tha.",
-"Clinic ki hygiene aur sterilization excellent hai.",
-"Doctor har cheez patiently explain karte hain.",
-"Modern equipment aur caring staff. Highly recommended.",
-"Entire team is professional and very cooperative."
-],
-
-rct:[
-"Root canal treatment bilkul comfortable raha.",
-"RCT ke dauran bilkul pain nahi hua.",
-"Mujhe RCT se bahut dar lagta tha lekin experience bahut smooth raha.",
-"Doctor ne har step achhe se explain kiya."
-],
-
-extraction:[
-"Meri wisdom tooth extraction bina dard ke hui.",
-"Tooth extraction expected se bahut easy rahi.",
-"Stitches ke baad bhi recovery fast rahi.",
-"Akkal daant nikalwane ka experience bahut accha raha."
-],
-
-filling:[
-"Filling treatment ka result natural lag raha hai.",
-"Tooth filling bahut smoothly hui.",
-"Broken tooth perfectly restore ho gaya.",
-"Bilkul painless filling treatment."
-],
-
-denture:[
-"Mere father ka denture perfectly fit hua.",
-"Denture comfortable hai aur chewing bhi achhi ho gayi.",
-"Doctor ne poora process patiently samjhaya.",
-"Very satisfied with denture treatment."
-],
-
-kids:[
-"Bachche ka treatment bahut patiently kiya gaya.",
-"My child was very comfortable during treatment.",
-"Doctor ka behaviour children ke saath excellent hai.",
-"Kid-friendly environment and caring staff."
-]
-
+general: generateReviews("General Dental Treatment",500),
+consultation: generateReviews("Dental Consultation",500),
+scaling: generateReviews("Scaling Treatment",500),
+scaling_polishing: generateReviews("Scaling and Polishing",500),
+whitening: generateReviews("Tooth Whitening Treatment",500),
+filling: generateReviews("Dental Filling",500),
+composite: generateReviews("Composite Restoration",500),
+laser_filling: generateReviews("Laser Filling",500),
+rct: generateReviews("Root Canal Treatment",500),
+capping: generateReviews("Dental Crown Treatment",500),
+extraction: generateReviews("Tooth Extraction",500),
+wisdom: generateReviews("Wisdom Tooth Extraction",500),
+pulpectomy: generateReviews("Pulpectomy Treatment",500),
+kids_rct: generateReviews("Kids Root Canal Treatment",500),
+braces: generateReviews("Orthodontic Braces",500),
+aligners: generateReviews("Clear Aligners",500),
+smile: generateReviews("Smile Designing",500),
+fullmouth: generateReviews("Full Mouth Rehabilitation",500),
+denture: generateReviews("Dentures",500),
+implant: generateReviews("Dental Implants",500),
+gums: generateReviews("Gum Treatment",500),
+ulcers: generateReviews("Mouth Ulcer Treatment",500),
+lip: generateReviews("Lip Correction",500),
+fracture: generateReviews("Jaw Fracture Management",500),
+trauma: generateReviews("Dental Trauma",500),
+swelling: generateReviews("Facial Swelling",500),
+spaceinfection: generateReviews("Space Infection",500),
+pus: generateReviews("Pus Drainage",500),
+cyst: generateReviews("Cyst Removal",500),
+veneers: generateReviews("Dental Veneers",500),
+bridge: generateReviews("Dental Bridge",500),
+complete_denture: generateReviews("Complete Denture",500),
+partial_denture: generateReviews("Partial Denture",500),
+fmr: generateReviews("Full Mouth Reconstruction",500),
+fluoride: generateReviews("Fluoride Treatment",500),
+sealants: generateReviews("Pit and Fissure Sealants",500),
+brushing: generateReviews("Tooth Brushing Guidance",500),
+xray: generateReviews("Digital X-Ray",500),
+emergency: generateReviews("Emergency Dental Treatment",500),
+tmj: generateReviews("TMJ Treatment",500),
+oral_surgery: generateReviews("Oral Surgery",500),
+biopsy: generateReviews("Biopsy",500),
+frenectomy: generateReviews("Frenectomy",500),
+gingivectomy: generateReviews("Gingivectomy",500),
+crown_lengthening: generateReviews("Crown Lengthening",500),
+bone_grafting: generateReviews("Bone Grafting",500),
+sinus_lift: generateReviews("Sinus Lift",500),
+sensitivity: generateReviews("Tooth Sensitivity Treatment",500),
+bad_breath: generateReviews("Bad Breath Treatment",500),
+oral_screening: generateReviews("Oral Cancer Screening",500)
 };
 
 let currentReview="";
@@ -232,7 +269,15 @@ function getReviews(){
 }
 
 function newReview(){
+
     const reviews = getReviews();
+
+    if(!reviews || reviews.length===0){
+        document.getElementById("reviewText").innerText =
+        "No reviews available for this category.";
+        return;
+    }
+
     currentReview =
         reviews[Math.floor(Math.random()*reviews.length)];
 
