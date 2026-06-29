@@ -1,38 +1,57 @@
 const reviewLink =
 "https://g.page/r/CTxgU-TLpYwzEBE/review";
+const doctorWords = [
+  "Doctor bahut polite hain",
+  "Doctor ne sab kuch patiently explain kiya",
+  "Doctor ka behaviour bahut friendly raha",
+  "Treatment ke dauran pura confidence diya",
+  "Bahut caring aur professional approach rahi"
+];
+
+const hygieneWords = [
+  "Clinic ki hygiene excellent hai",
+  "Sterilization standards bahut achhe hain",
+  "Clinic bahut clean aur well maintained hai",
+  "Modern equipment aur neat environment hai",
+  "Patient safety ka pura dhyan rakha gaya"
+];
+
+const endingWords = [
+  "Highly recommended.",
+  "Definitely recommend this clinic.",
+  "Bahut accha experience raha.",
+  "Family ke liye best dental clinic.",
+  "Dobara zarurat padi to yahin aayenge."
+];
+
+function generateReviews(treatment, count = 100) {
+  const reviews = [];
+
+  while (reviews.length < count) {
+    const review =
+      `${treatment}. ${
+        doctorWords[Math.floor(Math.random()*doctorWords.length)]
+      }. ${
+        hygieneWords[Math.floor(Math.random()*hygieneWords.length)]
+      }. ${
+        endingWords[Math.floor(Math.random()*endingWords.length)]
+      }`;
+
+    if (!reviews.includes(review)) {
+      reviews.push(review);
+    }
+  }
+
+  return reviews;
+}
 
 const reviews = {
-
-rct:[
-"Root canal treatment bilkul painless raha.",
-"Doctor ne har step explain kiya aur treatment comfortable tha.",
-"RCT ka experience expected se bahut better tha."
-],
-
-extraction:[
-"Akkal daant bina dard ke nikal gaya.",
-"Tooth extraction bahut smoothly hui.",
-"Stitches ke baad bhi recovery fast rahi."
-],
-
-filling:[
-"Tooth filling ka result natural lag raha hai.",
-"Broken tooth perfectly restore ho gaya.",
-"Filling treatment bahut smooth tha."
-],
-
-denture:[
-"Mere father ka denture perfectly fit hua.",
-"Denture comfortable hai aur chewing bahut better ho gayi.",
-"Excellent denture treatment."
-],
-
-kids:[
-"Mere bachche ka treatment bahut patiently kiya gaya.",
-"Kid-friendly environment and caring doctor.",
-"My child was very comfortable."
-]
-
+  rct: generateReviews("Root canal treatment ke dauran", 100),
+  extraction: generateReviews("Tooth extraction ke baad", 100),
+  filling: generateReviews("Tooth filling treatment me", 100),
+  denture: generateReviews("Denture treatment ke baad", 100),
+  kids: generateReviews("Bachche ke treatment ke dauran", 100),
+  implant: generateReviews("Dental implant treatment ke baad", 100)
 };
 
 let currentReview="";
