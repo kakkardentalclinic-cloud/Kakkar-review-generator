@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kakkar Dental Clinic Reviews</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#f5f7fa,#e8f0ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:750px;
+    background:#fff;
+    border-radius:25px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    text-align:center;
+}
+
+.logo{
+    font-size:30px;
+}
+
+h1{
+    margin:10px 0;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:25px;
+}
+
+select{
+    padding:12px;
+    width:100%;
+    max-width:300px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    font-size:16px;
+    margin-bottom:25px;
+}
+
+.review-box{
+    background:#f7f9fc;
+    border-radius:15px;
+    padding:25px;
+    min-height:140px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.buttons{
+    margin-top:25px;
+}
+
+button{
+    padding:14px 24px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    margin:8px;
+}
+
+.next{
+    background:#e9edf5;
+}
+
+.google{
+    background:#007bff;
+    color:white;
+}
+
+.footer{
+    margin-top:25px;
+    color:#777;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="logo">⭐🦷</div>
+
+<h1>Dr. Kakkar's - Kakkar Dental Clinic</h1>
+<div class="subtitle">
+Since 1966 • Thank you for trusting us ❤️
+</div>
+
+<select id="category" onchange="newReview()">
+<option value="all">All Reviews</option>
+<option value="rct">Root Canal</option>
+<option value="extraction">Extraction</option>
+<option value="filling">Filling</option>
+<option value="denture">Denture</option>
+<option value="kids">Kids Treatment</option>
+<option value="general">General</option>
+</select>
+
+<div class="review-box" id="reviewText"></div>
+
+<div class="buttons">
+<button class="next" onclick="newReview()">🔄 Next Review</button>
+<button class="google" onclick="copyReview()">⭐ Copy & Review on Google</button>
+</div>
+
+<div class="footer">
+Kakkar Dental Clinic • A Family Dental Clinic
+</div>
+
+</div>
+
+<script>
+
+const reviewData = {
+
+general:[
+"Bahut hi polite doctor hain. Treatment bilkul painless tha.",
+"Clinic ki hygiene aur sterilization excellent hai.",
+"Doctor har cheez patiently explain karte hain.",
+"Modern equipment aur caring staff. Highly recommended.",
+"Entire team is professional and very cooperative."
+],
+
+rct:[
+"Root canal treatment bilkul comfortable raha.",
+"RCT ke dauran bilkul pain nahi hua.",
+"Mujhe RCT se bahut dar lagta tha lekin experience bahut smooth raha.",
+"Doctor ne har step achhe se explain kiya."
+],
+
+extraction:[
+"Meri wisdom tooth extraction bina dard ke hui.",
+"Tooth extraction expected se bahut easy rahi.",
+"Stitches ke baad bhi recovery fast rahi.",
+"Akkal daant nikalwane ka experience bahut accha raha."
+],
+
+filling:[
+"Filling treatment ka result natural lag raha hai.",
+"Tooth filling bahut smoothly hui.",
+"Broken tooth perfectly restore ho gaya.",
+"Bilkul painless filling treatment."
+],
+
+denture:[
+"Mere father ka denture perfectly fit hua.",
+"Denture comfortable hai aur chewing bhi achhi ho gayi.",
+"Doctor ne poora process patiently samjhaya.",
+"Very satisfied with denture treatment."
+],
+
+kids:[
+"Bachche ka treatment bahut patiently kiya gaya.",
+"My child was very comfortable during treatment.",
+"Doctor ka behaviour children ke saath excellent hai.",
+"Kid-friendly environment and caring staff."
+]
+
+};
+
+let currentReview="";
+
+function getReviews(){
+    const category =
+    document.getElementById("category").value;
+
+    if(category==="all"){
+        return Object.values(reviewData).flat();
+    }
+    return reviewData[category];
+}
+
+function newReview(){
+    const reviews = getReviews();
+    currentReview =
+        reviews[Math.floor(Math.random()*reviews.length)];
+
+    document.getElementById("reviewText").innerText =
+        currentReview;
+}
+
+function confetti(){
+    for(let i=0;i<40;i++){
+        let div=document.createElement("div");
+        div.innerHTML="🎉";
+        div.style.position="fixed";
+        div.style.left=Math.random()*100+"vw";
+        div.style.top="-20px";
+        div.style.fontSize="25px";
+        div.style.zIndex="9999";
+        document.body.appendChild(div);
+
+        let y=0;
+        const fall=setInterval(()=>{
+            y+=6;
+            div.style.top=y+"px";
+            if(y>window.innerHeight){
+                clearInterval(fall);
+                div.remove();
+            }
+        },15);
+    }
+}
+
+function copyReview(){
+
+    navigator.clipboard.writeText(currentReview);
+
+    confetti();
+
+    setTimeout(()=>{
+        window.open(
+        "https://g.page/r/CTxgU-TLpYwzEBE/review",
+        "_blank"
+        );
+    },700);
+}
+
+newReview();
+
+</script>
+
+</body>
+</html>
